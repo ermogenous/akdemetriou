@@ -1,0 +1,94 @@
+@charset "utf-8";
+/* CSS Document */
+
+.main_text_strikethrough {
+    text-decoration: line-through;
+}
+
+.light_blue_header {
+    font-size: 25px;
+    color: #80B8E0;
+}
+
+.thin_horizontal_rule {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #CCC; /* old IE */
+    background-color: #CCC /* Modern Browsers */
+}
+
+.main_text_small_gray {
+    font-size: 11px;
+    color: #CCCCCC;
+}
+
+.main_text_smaller {
+    font-size: 12px;
+}
+
+.home_butterfly_bg{
+    background-image: url("images/butterfly.png");
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+.main_text_big_white{
+    font-size: 40px;
+    color: white;
+}
+
+/* change the background color */
+.navbar-custom {
+    background-color: #132D52;
+}
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+}
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255,255,255,.5);
+}
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+.h-divider{
+    margin-top:5px;
+    margin-bottom:5px;
+    height:1px;
+    width:100%;
+    border-top:1px solid gray;
+}
+
+.greenColor {
+    color:green;
+}
+
+.yellowColor{
+    color:yellow;
+}
+
+.redColor{
+    color:red;
+}
+
+.darkRedColor{
+    color:darkred;
+}
+
+.orangeColor{
+    color:orange;
+}
+
+.goldColor{
+    color:gold;
+}
+
+.purpleColor{
+    color:purple;
+}
