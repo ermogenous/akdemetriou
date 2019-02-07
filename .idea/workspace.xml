@@ -4,7 +4,13 @@
     <bookmark url="file://$PROJECT_DIR$/quotations/approvals_class.php" line="50" mnemonic="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="948a0687-8f2b-4f58-be7e-b92be4c8d727" name="Default" comment="" />
+    <list default="true" id="948a0687-8f2b-4f58-be7e-b92be4c8d727" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/common.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quotations/quotations_class.php" beforeDir="false" afterPath="$PROJECT_DIR$/quotations/quotations_class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quotations/quotations_modify.php" beforeDir="false" afterPath="$PROJECT_DIR$/quotations/quotations_modify.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quotations/quotations_print_html.php" beforeDir="false" afterPath="$PROJECT_DIR$/quotations/quotations_print_html.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,24 +23,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/main.php">
+      <file leaf-file-name="quotations_modify.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quotations/quotations_modify.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="1063" column="26" selection-start-line="1063" selection-start-column="26" selection-end-line="1063" selection-end-column="26" />
+            <state relative-caret-position="10234">
+              <caret line="607" column="116" selection-start-line="607" selection-start-column="116" selection-end-line="607" selection-end-column="116" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quotations_print_html.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/quotations/quotations_print_html.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="455" selection-start-line="455" selection-end-line="455" />
               <folding>
-                <element signature="e#61#67#0" expanded="true" />
-                <element signature="e#67#73#0" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="quotations_class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quotations/quotations_class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="7" selection-start-column="7" selection-end-column="7" />
+            <state relative-caret-position="2040">
+              <caret line="120" column="10" selection-start-line="120" selection-start-column="10" selection-end-line="120" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -50,12 +64,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>function ødb_tool_insert_row</find>
-      <find>https</find>
-      <find>per_me</find>
-      <find>include</find>
-      <find>$quote</find>
-      <find>print_r</find>
       <find>1</find>
       <find>gross</find>
       <find>Total</find>
@@ -80,6 +88,12 @@
       <find>$totalMembers</find>
       <find>FROM</find>
       <find>lock</find>
+      <find>rxjs</find>
+      <find>Individual/Group</find>
+      <find>10</find>
+      <find>foundSpouse</find>
+      <find>cer</find>
+      <find>$firstInstallment</find>
     </findStrings>
     <replaceStrings>
       <replace>col-sm-3</replace>
@@ -89,6 +103,12 @@
       <replace>&lt;?php</replace>
       <replace>$_POST[&quot;lid&quot;]</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>C:\xampp\htdocs\akdemetriou</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -138,12 +158,12 @@
         <option value="$PROJECT_DIR$/quotations/approvals_modify.php" />
         <option value="$PROJECT_DIR$/quotations/quotation_approvals.php" />
         <option value="$PROJECT_DIR$/quotations/approvals_class.php" />
-        <option value="$PROJECT_DIR$/quotations/quotations_print_html.php" />
-        <option value="$PROJECT_DIR$/quotations/quotations_class.php" />
         <option value="$PROJECT_DIR$/layout/generic/style.css" />
         <option value="$PROJECT_DIR$/quotations/quotations.php" />
-        <option value="$PROJECT_DIR$/quotations/quotations_modify.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/quotations/quotations_modify.php" />
+        <option value="$PROJECT_DIR$/quotations/quotations_class.php" />
+        <option value="$PROJECT_DIR$/quotations/quotations_print_html.php" />
       </list>
     </option>
   </component>
@@ -168,6 +188,7 @@
     <option name="width" value="1040" />
     <option name="height" value="730" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -180,6 +201,11 @@
             <path>
               <item name="akdemetriou" type="b2602c69:ProjectViewProjectNode" />
               <item name="akdemetriou" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="akdemetriou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="akdemetriou" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="quotations" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -250,15 +276,20 @@
       <workItem from="1531380526279" duration="1975000" />
       <workItem from="1532159726674" duration="605000" />
       <workItem from="1533822836491" duration="612000" />
-      <workItem from="1535031642008" duration="211000" />
+      <workItem from="1535031642008" duration="403000" />
+      <workItem from="1541156723529" duration="8452000" />
+      <workItem from="1541410507899" duration="9000" />
+      <workItem from="1548060152701" duration="3904000" />
+      <workItem from="1549280571558" duration="280000" />
+      <workItem from="1549528138599" duration="3371000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="245324000" />
+    <option name="totallyTimeSpent" value="261532000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
@@ -267,7 +298,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32943678" />
@@ -544,13 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/common.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="80" column="53" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quotations/approvals.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102">
@@ -558,38 +582,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/approvals_class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="149" column="10" selection-start-line="149" selection-start-column="10" selection-end-line="149" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quotations/approvals_modify.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="68" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/quotation_print.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/quotations_print_html.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4692">
-          <caret line="281" column="99" selection-start-line="281" selection-start-column="8" selection-end-line="281" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/quotations_class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
@@ -607,21 +603,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/quotations_modify.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="129" column="43" selection-start-line="129" selection-start-column="43" selection-end-line="129" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/main.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
+        <state relative-caret-position="17731">
           <caret line="1063" column="26" selection-start-line="1063" selection-start-column="26" selection-end-line="1063" selection-end-column="26" />
-          <folding>
-            <element signature="e#61#67#0" expanded="true" />
-            <element signature="e#67#73#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -629,6 +614,51 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="7" selection-start-column="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="80" column="40" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotations/approvals_class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="149" column="10" selection-start-line="149" selection-start-column="10" selection-end-line="149" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotations/quotation_print.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotations/quotations_modify.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10234">
+          <caret line="607" column="116" selection-start-line="607" selection-start-column="116" selection-end-line="607" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotations/quotations_class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="120" column="10" selection-start-line="120" selection-start-column="10" selection-end-line="120" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotations/quotations_print_html.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="455" selection-start-line="455" selection-end-line="455" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

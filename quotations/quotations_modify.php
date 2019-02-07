@@ -476,7 +476,7 @@ $db->show_header();
                                    value="<?php echo $data["client_age"]; ?>"
                                    required>
                             <div class="invalid-feedback">
-                                Please provide client`s Age.
+                                Please provide valid client`s Age.
                             </div>
                         </div>
                     </div>
@@ -489,14 +489,31 @@ $db->show_header();
                     <div class="form-group row">
                         <label for="fld_coverage_type" class="col-sm-4 col-form-label">Coverage Type</label>
                         <div class="col-sm-8">
-                            <select name="fld_coverage_type" id="fld_coverage_type" class="form-control">
+                            <select name="fld_coverage_type" id="fld_coverage_type" class="form-control"
+                            onchange="coverageTypeCheck()">
                                 <option value="FULL" <?php if ($data["coverage_type"] == 'FULL') echo "selected=\"selected\""; ?>>
                                     Medical Cover on Full Application
                                 </option>
                                 <option value="MORATORIUM" <?php if ($data["coverage_type"] == 'MORATORIUM') echo "selected=\"selected\""; ?>>
                                     Medical Cover on Partial Application
                                 </option>
+                                <option value="CPME" <?php if ($data["coverage_type"] == 'CPME') echo "selected=\"selected\""; ?>>
+                                    Medical Cover on Continuing Personal Medical Exclusions
+                                </option>
+                                <option value="OMHD" <?php if ($data["coverage_type"] == 'OMHD') echo "selected=\"selected\""; ?>>
+                                    On Medical History Disregarded
+                                </option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" id="loadingRow">
+                        <label for="fld_loading" class="col-sm-4 col-form-label">Loading %</label>
+                        <div class="col-sm-8">
+                            <input name="fld_loading" type="text" id="fld_loading"
+                                   class="form-control"
+                                   value="<?php echo $data["loading"]; ?>"
+                                   required>
                         </div>
                     </div>
 
@@ -583,6 +600,27 @@ $db->show_header();
                             </select>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="fld_under_10_discount" class="col-sm-4 col-form-label">Under 10 Discounts</label>
+                        <div class="col-sm-5">
+                            <select name="fld_under_10_discount" id="fld_under_10_discount" class="form-control">
+                                <option value="free" <?php if ($data["under_10_discount"] == 'free') echo "selected=\"selected\""; ?>>
+                                    Under 10 Free
+                                </option>
+                                <option value="charge" <?php if ($data["under_10_discount"] == 'charge') echo "selected=\"selected\""; ?>>
+                                    Charge Under 10
+                                </option>
+                                <option value="chargeDiscount" <?php if ($data["under_10_discount"] == 'chargeDiscount') echo "selected=\"selected\""; ?>>
+                                    Charge Under 10 + 50% Discount
+                                </option>
+                            </select>
+
+                        </div>
+                        <div class="col-sm-3">
+                            Spouse Must Exists
+                        </div>
+                    </div>
                     <!-- Members ------------------------------------------------------------------------------------------------------------------------------------------------->
                     <!-- Individual HTML-->
                     <div id="individualMembersContainer" class="d-none">
@@ -664,6 +702,18 @@ $db->show_header();
         }
         ?>
 
+        function coverageTypeCheck(){
+            let option = $('#fld_coverage_type').val();
+            if (option == 'CPME' || option == 'OMHD'){
+                $('#loadingRow').show();
+                $('#fld_loading').removeAttr('disabled');
+            }
+            else {
+                $('#loadingRow').hide();
+                $('#fld_loading').attr('disabled','disabled');
+            }
+        }
+        coverageTypeCheck();
         function addMember(memberName = '', memberSurname = '', memberId = '', memberAge = '', memberBirthdate = '', memberType = '', type = 'new', memberDbId = 0) {
 
             //get the content
@@ -867,7 +917,22 @@ $db->show_header();
                 document.getElementById('fld_client_birthdate').value = '';
                 document.getElementById('fld_client_birthdate').disabled = true;
 
-
+                let exists = false;
+                $('#fld_coverage_type  option').each(function(){
+                    if (this.value == 'CPME') {
+                        exists = true;
+                    }
+                });
+                if (exists == false) {
+                    $('#fld_coverage_type').append($('<option>', {
+                        value: 'CPME',
+                        text: 'Medical Cover on Continuing Personal Medical Exclusions'
+                    }));
+                    $('#fld_coverage_type').append($('<option>', {
+                        value: 'OMHD',
+                        text: 'On Medical History Disregarded'
+                    }));
+                }
             }
             else if ($('#fld_individual_group').val() == 'I') {
                 document.getElementById('groupMembersContainer').classList.add('d-none');
@@ -876,6 +941,10 @@ $db->show_header();
                 document.getElementById('fld_client_age').disabled = false;
                 document.getElementById('fld_client_id').disabled = false;
                 document.getElementById('fld_client_birthdate').disabled = false;
+
+                $('#fld_coverage_type option[value="CPME"]').remove();
+                $('#fld_coverage_type option[value="OMHD"]').remove();
+
             }
             else {
                 document.getElementById('groupMembersContainer').classList.add('d-none');
@@ -1028,9 +1097,15 @@ $db->show_header();
                         //loop into all the age fields
                         var i;
                         var noErrorFound = true;
+                        var allowedAge = <?php if ($db->user_data['usr_user_rights'] <= 2) {
+                            echo '100';
+                        } else {
+                            echo '69';
+                        } ?>;
+                        
                         for (i = 1; i <= totalMembers; i++) {
                             var fieldValue = $('#client_age-' + i).val();
-                            if ($.isNumeric(fieldValue) == false || fieldValue < 0 || fieldValue > 100) {
+                            if ($.isNumeric(fieldValue) == false || fieldValue < 0 || fieldValue > allowedAge) {
                                 $('#client_age-' + i).addClass('is-invalid');
                                 $('#client_age-' + i).removeClass('is-valid');
                                 event.preventDefault();
@@ -1043,6 +1118,18 @@ $db->show_header();
                                 noErrorFound = true;
                             }
                         }
+                        //check the age of the client
+                        if ($('#fld_client_age').val() > allowedAge){
+                            $('#fld_client_age').addClass('is-invalid');
+                            $('#fld_client_age').removeClass('is-valid');
+                            event.preventDefault();
+                            event.stopPropagation();
+                            noErrorFound = false;
+                        }else {
+                            $('#fld_client_age').addClass('is-valid');
+                            $('#fld_client_age').removeClass('is-invalid');
+                            noErrorFound = true;
+                        }
 
 
                         //>>MIC
@@ -1051,7 +1138,6 @@ $db->show_header();
                         if (noErrorFound) {
                             form.classList.add('was-validated');
                         }
-
                     }, false);
                 });
             }, false);

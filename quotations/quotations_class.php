@@ -58,26 +58,44 @@ class quotations
     {
         global $db;
         //prepare the data from the client first
+        if ($this->quotationData["coverage_type"] == 'CPME' || $this->quotationData["coverage_type"] == 'OMHD'){
+            $coverageType = 'FULL';
+        }
+        else {
+            $coverageType = $this->quotationData["coverage_type"];
+        }
         $sql = "SELECT * FROM pricing WHERE 
-                  coverage_type = '" . $this->quotationData["coverage_type"] . "' AND  
+                  coverage_type = '" . $coverageType . "' AND  
                   package = '" . $this->quotationData["package"] . "' AND 
                   area_of_cover = '" . $this->quotationData["area_of_cover"] . "' AND 
                   frequency_of_payment = '" . $this->frequencyOfPayment . "' AND 
                   excess = " . $this->excess . " ";
 
-
         //check first if its the client or a member
         //member
         $age = 0;
+        //check if age is more than 69
+        if ($data['age'] > 69) {
+            $memberAge = 69;
+        }
+        else {
+            $memberAge = $data['age'];
+        }
+        if ($data['client_age'] > 69){
+            $clientAge = 69;
+        }
+        else {
+            $clientAge = $data['client_age'];
+        }
         if ($data["quotation_members_ID"] != null) {
-            $sql .= " AND age_from <= " . $data["age"] . " AND age_to >= " . $data["age"];
+            $sql .= " AND age_from <= " . $memberAge . " AND age_to >= " . $memberAge;
             $age = $data["age"];
         } //client
         else {
-            $sql .= " AND age_from <= " . $data["client_age"] . " AND age_to >= " . $data["client_age"];
+            $sql .= " AND age_from <= " . $clientAge . " AND age_to >= " . $clientAge;
             $age = $data["client_age"];
         }
-        //echo $sql."\n\n";
+        //echo $sql."\n\n<br><br>";
         $result = $db->query($sql);
 
         if ($db->num_rows($result) > 1) {
@@ -90,19 +108,38 @@ class quotations
         if ($this->quotationData["country"] == "GRE") {
             $multiplier = 1.15;
         }
+        //if loading then add it to the multiplier
+        if ($this->quotationData['coverage_type'] == 'CPME' || $this->quotationData['coverage_type'] == 'OMHD'){
+            $multiplier += ($this->quotationData['loading'] / 100);
+        }
         $return["value"] = $return["value"] * $multiplier;
 
         //echo "Age:".$data["age"]." Price each:".$return["value"]."<br>";
 
         //check if under 10 which is free and if spouse exists
         $return["free"] = 0;
+        //echo "->".$age." ".$this->under10Free." Spouse:".$this->foundSpouse."<br><br>";
         if ($age <= 10
             && $this->under10Free == true
             && $this->foundSpouse == true
-            && $data["type"] == 'DEPENDENT') {
+            && $data["type"] == 'DEPENDENT')
+        {
 
-            $return["value"] = 0;
-            $return["free"] = 1;
+            //echo "Here";
+            if ($this->quotationData['under_10_discount'] == ''
+                || $this->quotationData['under_10_discount'] == 'free')
+            {
+                $return["value"] = 0;
+                $return["free"] = 1;
+            }
+            else if ($this->quotationData['under_10_discount'] == 'chargeDiscount'){
+                $return["value"] = round(($return["value"] * 0.5),2);
+            }
+            else if ($this->quotationData['under_10_discount'] == 'charge'){
+                //do nothing. charge the member
+            }
+
+
         }
         //check if the member is a spouse
         if ($data["type"] == 'SPOUSE') {
@@ -145,7 +182,7 @@ class quotations
             //print_r($member);
             //echo "<br>\n\n\n\n";
             if ($memberData['free'] == 1) {
-                //echo "Found here:".$member['quotation_members_ID'];
+                //echo "Found here:".$member['quotation_members_ID']." Value:".$memberData["value"];
                 $this->premiumData["members"]["free"] = $member['quotation_members_ID'];
             }
 

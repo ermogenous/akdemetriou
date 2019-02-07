@@ -90,8 +90,8 @@ else {
     //ini_set('error_reporting','E_ALL & ~E_NOTICE & ~E_WARNING');
 }
 //INI SPECIFICATIONS
-//ini_set('display_errors', '1');
-//ini_set('html_errors', '1');
-//if ($temp_var["show_all_errors"] != 1) {
-//    ini_set('error_reporting','E_ALL & ~E_NOTICE & ~E_WARNING');
-//}
+ini_set('display_errors', '1');
+ini_set('html_errors', '1');
+if ($temp_var["show_all_errors"] != 1) {
+    ini_set('error_reporting','E_ALL & ~E_NOTICE & ~E_WARNING');
+}

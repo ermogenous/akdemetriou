@@ -28,7 +28,12 @@ function getQuotationHtml($qId, $pdf = false)
             $data["coverage_type"] = 'Medical Cover on Full Application';
         } else if ($data["coverage_type"] == 'MORATORIUM') {
             $data["coverage_type"] = 'Medical Cover on Partial Application';
+        }else if ($data["coverage_type"] == 'CPME') {
+            $data["coverage_type"] = 'Medical Cover on Continuing Personal Medical Exclusions';
+        }else if ($data["coverage_type"] == 'OMHD') {
+            $data["coverage_type"] = 'On Medical History Disregarded';
         }
+
 
         if ($db->user_data['usr_user_rights'] == 0 || $db->user_data['usg_approvals'] == 'ANSWER'){
             $membersSql = "SELECT * FROM `quotation_members` 
@@ -381,7 +386,16 @@ function getQuotationHtml($qId, $pdf = false)
 
 
         $monthlyInstallment = round(($netPremium / 12),2);
-        $firstInstallment = round(($monthlyInstallment + $prem->premiumData['stamps'] + $gAllMembers['policy_fees']),2);
+        $firstMonthlyInstallment = round(($monthlyInstallment + $prem->premiumData['stamps'] + $gAllMembers['policy_fees']),2);
+
+        $quarterlyInstallment = round(($netPremium / 4),2);
+        $firstQuarterlyInstallment = round(($quarterlyInstallment + $prem->premiumData['stamps'] + $gAllMembers['policy_fees']),2);
+
+        $semiInstallment = round(($netPremium / 2),2);
+        $firstSemiInstallment = round(($semiInstallment + $prem->premiumData['stamps'] + $gAllMembers['policy_fees']),2);
+
+        $annualInstallment = round(($netPremium + $prem->premiumData['stamps'] + $gAllMembers['policy_fees']),2);
+
         $html .= '<tr>
             <td colspan="2">
             
@@ -437,13 +451,40 @@ function getQuotationHtml($qId, $pdf = false)
                         <td>Total Lives</td>
                         <td>'.$totalMembers.'</td>
                     </tr>
-                    <tr>
-                        <td>First Monthly Installment</td>
-                        <td>€'.$firstInstallment.'</td>
+                    <tr>';
+
+        if ($prem->frequencyOfPayment == 'MONTHLY'){
+            $freqLabelFirst = 'First Monthly  Installment';
+            $freqLabelFirstAmount = $firstMonthlyInstallment;
+            $freqLabelNext = 'Next Monthly Installment';
+            $freqLabelNextAmount =  '€'.$monthlyInstallment;
+        }
+        else if ($prem->frequencyOfPayment == 'QUARTERLY'){
+            $freqLabelFirst = 'First Quarterly  Installment';
+            $freqLabelFirstAmount = $firstQuarterlyInstallment;
+            $freqLabelNext = 'Next Quarterly Installment';
+            $freqLabelNextAmount =  '€'.$quarterlyInstallment;
+        }
+        else if ($prem->frequencyOfPayment == 'SEMI - ANNUAL'){
+            $freqLabelFirst = 'First Semi - Annual  Installment';
+            $freqLabelFirstAmount = $firstSemiInstallment;
+            $freqLabelNext = 'Next Semi - Annual Installment';
+            $freqLabelNextAmount =  '€'.$semiInstallment;
+        }
+        else if ($prem->frequencyOfPayment == 'ANNUAL'){
+            $freqLabelFirst = 'Annual Installment ';
+            $freqLabelFirstAmount = $annualInstallment;
+            $freqLabelNext = '';
+            $freqLabelNextAmount =  '';
+        }
+
+        $html .='
+                        <td>'.$freqLabelFirst.'</td>
+                        <td>€'.$freqLabelFirstAmount.'</td>
                     </tr>
                     <tr>
-                        <td>Next Monthly Installmets</td>
-                        <td>€'.$monthlyInstallment.'</td>
+                        <td>'.$freqLabelNext.'</td>
+                        <td>'.$freqLabelNextAmount.'</td>
                     </tr>
                 </table>
                 
@@ -455,17 +496,30 @@ function getQuotationHtml($qId, $pdf = false)
         </tr>
         <tr>
         
-            <td colspan="2" class="main_text_smaller"><strong><u>Notes:</u></strong><br>
-                <br>-) These rates are annual premiums quoted in EUR, payable in 12 installments.
-                <br>-) Population adjustments will be calculated in an end of year reconciliation.
+            <td colspan="2" class="main_text_smaller"><strong><u>Notes:</u></strong><br>';
+
+        if ($prem->frequencyOfPayment == 'MONTHLY'){
+            $html .= '<br>-) These rates are annual premiums quoted in EUR, payable in 12 installments.';
+        }
+        else if ($prem->frequencyOfPayment == 'QUARTERLY'){
+            $html .= '<br>-) These rates are annual premiums quoted in EUR, payable in 4 installments.';
+        }
+        else if ($prem->frequencyOfPayment == 'SEMI - ANNUAL'){
+            $html .= '<br>-) These rates are annual premiums quoted in EUR, payable in 2 installments.';
+        }else if ($prem->frequencyOfPayment == 'ANNUAL'){
+            $html .= '<br>-) These rates are annual premiums quoted in EUR, payable in 1 installment.';
+        }
+
+        $html.= '
+                <br>-) The Population adjustments will be amended within the next installment invoice.
                 <br>-) Contract situs: Cyprus
-                <br>-) Policy fees and Insurance Premium Tax will be paid with the first monthly installment. The total amount 
+                <br>-) Policy fees and Insurance Premium Tax will be paid with the first installment. The total amount 
                 is '.($gAllMembers['policy_fees'] + $prem->premiumData['stamps']).' euros.
                 <br>-) This quotation is valid for commencement dates up to: 30 days form the issue date.
                 <br>-) Premiums are indicative and calculated based on the staff details you gave us.
                 <br>-) This quote has been elaborated understanding that this is a mandatory group, where employees cannot chose 
                 whether to have this insurance cover or not. Premium is 100% payable by the employer.
-                <br>-) Should the number of lives differ by 10% or more from the population quoted above, we reserve the right 
+                <br>-) Should the number of lives or change in profile differ by 10% or more from the population quoted above, we reserve the right 
                 to review and amend the rates and terms offered.
             </td>
         </tr>
@@ -490,7 +544,7 @@ function getQuotationHtml($qId, $pdf = false)
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        Underwritten by certain Underwriters at Lloyd`s of London
+                        Underwritten by Lloyd’s Insurance Company S.A.
                     </td>
                 </tr>
                 <tr>
