@@ -7,9 +7,12 @@
     <list default="true" id="948a0687-8f2b-4f58-be7e-b92be4c8d727" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/common.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/main.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/generic/template_test.php" beforeDir="false" afterPath="$PROJECT_DIR$/layout/generic/template_test.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quotations/quotations_class.php" beforeDir="false" afterPath="$PROJECT_DIR$/quotations/quotations_class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quotations/quotations_modify.php" beforeDir="false" afterPath="$PROJECT_DIR$/quotations/quotations_modify.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quotations/quotations_print_html.php" beforeDir="false" afterPath="$PROJECT_DIR$/quotations/quotations_print_html.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quotations/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/quotations/test.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,32 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="quotations_modify.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="quotations_modify.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/quotations/quotations_modify.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10234">
-              <caret line="607" column="116" selection-start-line="607" selection-start-column="116" selection-end-line="607" selection-end-column="116" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quotations_print_html.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/quotations/quotations_print_html.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="455" selection-start-line="455" selection-end-line="455" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quotations_class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/quotations/quotations_class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
-              <caret line="120" column="10" selection-start-line="120" selection-start-column="10" selection-end-line="120" selection-end-column="10" />
+            <state relative-caret-position="643">
+              <caret line="652" selection-start-line="652" selection-end-line="652" />
             </state>
           </provider>
         </entry>
@@ -64,19 +46,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>1</find>
-      <find>gross</find>
-      <find>Total</find>
-      <find>instal</find>
-      <find>&lt;=</find>
-      <find>gross_premium</find>
-      <find>getMemberHTML</find>
-      <find>addMember</find>
-      <find>Annually</find>
-      <find>mora</find>
-      <find>coverage_type</find>
-      <find>$html =</find>
-      <find>Annual Excess</find>
       <find>\'</find>
       <find>&lt;?</find>
       <find>$_GET[&quot;lid&quot;]</find>
@@ -91,9 +60,22 @@
       <find>rxjs</find>
       <find>Individual/Group</find>
       <find>10</find>
-      <find>foundSpouse</find>
       <find>cer</find>
       <find>$firstInstallment</find>
+      <find>SELECT * FROM users WHERE usr_users_ID =</find>
+      <find>enable_jquery_ui</find>
+      <find>enable_rxjs_lite</find>
+      <find>jqu</find>
+      <find>admin_more_head</find>
+      <find>date</find>
+      <find>feea</find>
+      <find>pricing</find>
+      <find>Total</find>
+      <find>fld_under_10_discount</find>
+      <find>under_10_discount</find>
+      <find>foundSpouse</find>
+      <find>needs-validation</find>
+      <find>fld_effective_date</find>
     </findStrings>
     <replaceStrings>
       <replace>col-sm-3</replace>
@@ -149,11 +131,7 @@
         <option value="$PROJECT_DIR$/send_auto_emails/send_auto_emails_send.php" />
         <option value="$PROJECT_DIR$/quotations/quotations_send_email.php" />
         <option value="$PROJECT_DIR$/send_auto_emails/send_auto_emails_class.php" />
-        <option value="$PROJECT_DIR$/quotations/test.php" />
         <option value="$PROJECT_DIR$/users/groups_modify.php" />
-        <option value="$PROJECT_DIR$/include/main.php" />
-        <option value="$PROJECT_DIR$/layout/generic/template_test.php" />
-        <option value="$PROJECT_DIR$/include/common.php" />
         <option value="$PROJECT_DIR$/quotations/approvals.php" />
         <option value="$PROJECT_DIR$/quotations/approvals_modify.php" />
         <option value="$PROJECT_DIR$/quotations/quotation_approvals.php" />
@@ -161,9 +139,13 @@
         <option value="$PROJECT_DIR$/layout/generic/style.css" />
         <option value="$PROJECT_DIR$/quotations/quotations.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/quotations/quotations_modify.php" />
-        <option value="$PROJECT_DIR$/quotations/quotations_class.php" />
+        <option value="$PROJECT_DIR$/quotations/test.php" />
+        <option value="$PROJECT_DIR$/include/common.php" />
+        <option value="$PROJECT_DIR$/layout/generic/template_test.php" />
+        <option value="$PROJECT_DIR$/include/main.php" />
         <option value="$PROJECT_DIR$/quotations/quotations_print_html.php" />
+        <option value="$PROJECT_DIR$/quotations/quotations_class.php" />
+        <option value="$PROJECT_DIR$/quotations/quotations_modify.php" />
       </list>
     </option>
   </component>
@@ -185,8 +167,9 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
-    <option name="width" value="1040" />
-    <option name="height" value="730" />
+    <option name="y" value="-10" />
+    <option name="width" value="1940" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -194,7 +177,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -205,12 +187,18 @@
             <path>
               <item name="akdemetriou" type="b2602c69:ProjectViewProjectNode" />
               <item name="akdemetriou" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="include" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="akdemetriou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="akdemetriou" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="quotations" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -282,14 +270,21 @@
       <workItem from="1548060152701" duration="3904000" />
       <workItem from="1549280571558" duration="280000" />
       <workItem from="1549528138599" duration="3371000" />
+      <workItem from="1552913503853" duration="685000" />
+      <workItem from="1552990451167" duration="16489000" />
+      <workItem from="1553091766094" duration="1285000" />
+      <workItem from="1553158684230" duration="37000" />
+      <workItem from="1553159158756" duration="630000" />
+      <workItem from="1553174835798" duration="4683000" />
+      <workItem from="1553583481121" duration="413000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="261532000" />
+    <option name="totallyTimeSpent" value="285754000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
@@ -320,17 +315,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/users/users_groups.php">
+    <entry file="file://$PROJECT_DIR$/quotations/quotations_class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/users_menu.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+        <state relative-caret-position="2601">
+          <caret line="153" column="40" lean-forward="true" selection-start-line="153" selection-start-column="40" selection-end-line="153" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -484,13 +472,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/quotation_print_pdf.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="31" column="16" selection-start-line="12" selection-end-line="31" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/send_auto_emails/send_auto_emails_modify.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -533,24 +514,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/users/groups_modify.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="152" column="38" selection-start-line="152" selection-start-column="38" selection-end-line="152" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/layout/generic/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="29" column="82" lean-forward="true" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="82" />
         </state>
       </provider>
     </entry>
@@ -561,24 +528,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/layout/generic/template_test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="67" column="123" selection-start-line="67" selection-start-column="123" selection-end-line="67" selection-end-column="123" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quotations/quotation_approvals.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="79" column="92" selection-start-line="79" selection-start-column="92" selection-end-line="79" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/approvals.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="59" column="93" selection-start-line="59" selection-start-column="93" selection-end-line="59" selection-end-column="93" />
         </state>
       </provider>
     </entry>
@@ -603,31 +556,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17731">
-          <caret line="1063" column="26" selection-start-line="1063" selection-start-column="26" selection-end-line="1063" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/common.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="80" column="40" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/approvals_class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="149" column="10" selection-start-line="149" selection-start-column="10" selection-end-line="149" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -638,27 +570,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/quotations_modify.php">
+    <entry file="file://$PROJECT_DIR$/quotations/test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10234">
-          <caret line="607" column="116" selection-start-line="607" selection-start-column="116" selection-end-line="607" selection-end-column="116" />
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quotations/quotations_class.php">
+    <entry file="file://$PROJECT_DIR$/quotations/compare/approvals.php" />
+    <entry file="file://$PROJECT_DIR$/quotations/approvals.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="120" column="10" selection-start-line="120" selection-start-column="10" selection-end-line="120" selection-end-column="10" />
+        <state relative-caret-position="918">
+          <caret line="59" column="93" selection-start-line="59" selection-start-column="93" selection-end-line="59" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotations/approvals_class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="174" column="19" selection-start-line="174" selection-start-column="19" selection-end-line="174" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layout/generic/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="34" selection-start-line="13" selection-end-line="13" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layout/generic/template_test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="1288" lean-forward="true" selection-start-line="1288" selection-end-line="1288" />
+          <folding>
+            <element signature="e#6#75#0#PHP" expanded="true" />
+            <element signature="e#61#67#0" expanded="true" />
+            <element signature="e#67#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotations/quotation_print_pdf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" column="18" selection-start-line="12" selection-end-line="31" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/quotations/quotations_print_html.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="455" selection-start-line="455" selection-end-line="455" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="1394">
+          <caret line="87" column="32" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="80" column="53" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotations/quotations_class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="153" column="40" selection-start-line="153" selection-start-column="40" selection-end-line="153" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotations/quotations_modify.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="652" selection-start-line="652" selection-end-line="652" />
         </state>
       </provider>
     </entry>

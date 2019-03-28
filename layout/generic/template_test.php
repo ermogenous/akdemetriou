@@ -4,6 +4,7 @@ function template_header()
     //template used
     //https://blackrockdigital.github.io/startbootstrap-sb-admin-2/pages/index.html
     global $main, $db;
+    $db->enable_jquery();
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -20,9 +21,7 @@ function template_header()
                 integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
                 crossorigin="anonymous"></script>
 
-        <script language="JavaScript" type="text/javascript"
-                src="<?php echo $main["site_url"]; ?>/scripts/bootstrap-4/js/jquery-3.3.1.min.js"></script>
-
+        <?php echo $db->admin_more_head;?>
     </head>
     <body>
     <?php if ($db->admin_layout_printer != 'yes') { ?>

@@ -17,6 +17,7 @@ if ($_POST["action"] == "insert") {
     $db->check_restriction_area('insert');
 
     $_POST["fld_user_id"] = $db->user_data["usr_users_ID"];
+    $_POST["fld_effective_date"] = $db->convert_date_format($_POST["fld_effective_date"], 'dd/mm/yyyy', 'yyyy-mm-dd');
 
     if ($_POST["fld_individual_group"] == "G") {
         $_POST["fld_client_sur_name"] = '';
@@ -125,6 +126,7 @@ if ($_POST["action"] == "insert") {
 } else if ($_POST["action"] == "update") {
     $db->check_restriction_area('update');
 
+    $_POST["fld_effective_date"] = $db->convert_date_format($_POST["fld_effective_date"], 'dd/mm/yyyy', 'yyyy-mm-dd');
 
     if ($_POST["fld_individual_group"] == "G") {
         $_POST["fld_client_sur_name"] = '';
@@ -309,6 +311,7 @@ if ($_GET["lid"] != "") {
 
     //fix birthdate
     $data["client_birthdate"] = $db->convert_date_format($data["client_birthdate"], 'yyyy-mm-dd', 'dd/mm/yyyy');
+    $data["effective_date"] = $db->convert_date_format($data["effective_date"], 'yyyy-mm-dd', 'dd/mm/yyyy');
 
     if ($data["quotations_id"] == null) {
         header("Location: quotations.php?na");
@@ -326,7 +329,7 @@ if ($_GET["lid"] != "") {
 
 }
 
-
+$db->enable_jquery_ui();
 $db->show_header();
 
 ?>
@@ -490,7 +493,7 @@ $db->show_header();
                         <label for="fld_coverage_type" class="col-sm-4 col-form-label">Coverage Type</label>
                         <div class="col-sm-8">
                             <select name="fld_coverage_type" id="fld_coverage_type" class="form-control"
-                            onchange="coverageTypeCheck()">
+                                    onchange="coverageTypeCheck()">
                                 <option value="FULL" <?php if ($data["coverage_type"] == 'FULL') echo "selected=\"selected\""; ?>>
                                     Medical Cover on Full Application
                                 </option>
@@ -601,26 +604,53 @@ $db->show_header();
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="fld_under_10_discount" class="col-sm-4 col-form-label">Under 10 Discounts</label>
-                        <div class="col-sm-5">
-                            <select name="fld_under_10_discount" id="fld_under_10_discount" class="form-control">
-                                <option value="free" <?php if ($data["under_10_discount"] == 'free') echo "selected=\"selected\""; ?>>
-                                    Under 10 Free
-                                </option>
-                                <option value="charge" <?php if ($data["under_10_discount"] == 'charge') echo "selected=\"selected\""; ?>>
-                                    Charge Under 10
-                                </option>
-                                <option value="chargeDiscount" <?php if ($data["under_10_discount"] == 'chargeDiscount') echo "selected=\"selected\""; ?>>
-                                    Charge Under 10 + 50% Discount
-                                </option>
-                            </select>
+                    <?php
+                    //under 10 discounts is removed after 1/4/2019
+                    if (1 == 2) {
+                        ?>
+                        <div class="form-group row">
+                            <label for="fld_under_10_discount" class="col-sm-4 col-form-label">Under 10
+                                Discounts</label>
+                            <div class="col-sm-5">
+                                <select name="fld_under_10_discount" id="fld_under_10_discount" class="form-control">
+                                    <option value="free" <?php if ($data["under_10_discount"] == 'free') echo "selected=\"selected\""; ?>>
+                                        Under 10 Free
+                                    </option>
+                                    <option value="charge" <?php if ($data["under_10_discount"] == 'charge') echo "selected=\"selected\""; ?>>
+                                        Charge Under 10
+                                    </option>
+                                    <option value="chargeDiscount" <?php if ($data["under_10_discount"] == 'chargeDiscount') echo "selected=\"selected\""; ?>>
+                                        Charge Under 10 + 50% Discount
+                                    </option>
+                                </select>
 
+                            </div>
+                            <div class="col-sm-3">
+                                Spouse Must Exists
+                            </div>
                         </div>
-                        <div class="col-sm-3">
-                            Spouse Must Exists
+                    <?php } ?>
+                    <div class="form-group row">
+                        <label for="fld_effective_date" class="col-sm-4 col-form-label">Effective Date</label>
+                        <div class="col-sm-4">
+                            <input name="fld_effective_date" type="text" id="fld_effective_date"
+                                   class="form-control"
+                                   placeholder="dd/mm/yyyy"
+                                   required>
+                            <script>
+                                $(function () {
+                                    $("#fld_effective_date").datepicker();
+                                    $("#fld_effective_date").datepicker("option", "dateFormat", "dd/mm/yy");
+                                    $("#fld_effective_date").val('<?php echo $data["effective_date"]?>');
+
+                                });
+                            </script>
+                            <div class="invalid-feedback">
+                                Please provide a valid effective date.
+                            </div>
                         </div>
                     </div>
+
                     <!-- Members ------------------------------------------------------------------------------------------------------------------------------------------------->
                     <!-- Individual HTML-->
                     <div id="individualMembersContainer" class="d-none">
@@ -702,18 +732,20 @@ $db->show_header();
         }
         ?>
 
-        function coverageTypeCheck(){
+        function coverageTypeCheck() {
             let option = $('#fld_coverage_type').val();
-            if (option == 'CPME' || option == 'OMHD'){
+            if (option == 'CPME' || option == 'OMHD') {
                 $('#loadingRow').show();
                 $('#fld_loading').removeAttr('disabled');
             }
             else {
                 $('#loadingRow').hide();
-                $('#fld_loading').attr('disabled','disabled');
+                $('#fld_loading').attr('disabled', 'disabled');
             }
         }
+
         coverageTypeCheck();
+
         function addMember(memberName = '', memberSurname = '', memberId = '', memberAge = '', memberBirthdate = '', memberType = '', type = 'new', memberDbId = 0) {
 
             //get the content
@@ -918,7 +950,7 @@ $db->show_header();
                 document.getElementById('fld_client_birthdate').disabled = true;
 
                 let exists = false;
-                $('#fld_coverage_type  option').each(function(){
+                $('#fld_coverage_type  option').each(function () {
                     if (this.value == 'CPME') {
                         exists = true;
                     }
@@ -1095,6 +1127,7 @@ $db->show_header();
                         }
                         //<<MIC
                         //loop into all the age fields
+
                         var i;
                         var noErrorFound = true;
                         var allowedAge = <?php if ($db->user_data['usr_user_rights'] <= 2) {
@@ -1102,7 +1135,8 @@ $db->show_header();
                         } else {
                             echo '69';
                         } ?>;
-                        
+
+                        //check the members
                         for (i = 1; i <= totalMembers; i++) {
                             var fieldValue = $('#client_age-' + i).val();
                             if ($.isNumeric(fieldValue) == false || fieldValue < 0 || fieldValue > allowedAge) {
@@ -1119,16 +1153,32 @@ $db->show_header();
                             }
                         }
                         //check the age of the client
-                        if ($('#fld_client_age').val() > allowedAge){
+                        if ($('#fld_client_age').val() > allowedAge) {
                             $('#fld_client_age').addClass('is-invalid');
                             $('#fld_client_age').removeClass('is-valid');
                             event.preventDefault();
                             event.stopPropagation();
                             noErrorFound = false;
-                        }else {
+                        } else {
                             $('#fld_client_age').addClass('is-valid');
                             $('#fld_client_age').removeClass('is-invalid');
                             noErrorFound = true;
+                        }
+
+                        //check the effective date.
+                        let effectiveDate = $('#fld_effective_date').val();
+
+
+                        if (isDate(effectiveDate)) {
+                            $('#fld_effective_date').addClass('is-valid');
+                            $('#fld_effective_date').removeClass('is-invalid');
+                        }
+                        else {
+                            $('#fld_effective_date').addClass('is-invalid');
+                            $('#fld_effective_date').removeClass('is-valid');
+                            event.preventDefault();
+                            event.stopPropagation();
+                            noErrorFound = false;
                         }
 
 
@@ -1142,6 +1192,36 @@ $db->show_header();
                 });
             }, false);
         })();
+
+        function isDate(txtDate) {
+            var currVal = txtDate;
+            if (currVal == '')
+                return false;
+            //Declare Regex
+            var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+            var dtArray = currVal.match(rxDatePattern); // is format OK?
+
+            if (dtArray == null)
+                return false;
+
+            //Checks for dd/mm/yyyy format.
+            dtDay = dtArray[1];
+            dtMonth = dtArray[3];
+            dtYear = dtArray[5];
+
+            if (dtMonth < 1 || dtMonth > 12)
+                return false;
+            else if (dtDay < 1 || dtDay > 31)
+                return false;
+            else if ((dtMonth == 4 || dtMonth == 6 || dtMonth == 9 || dtMonth == 11) && dtDay == 31)
+                return false;
+            else if (dtMonth == 2) {
+                var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+                if (dtDay > 29 || (dtDay == 29 && !isleap))
+                    return false;
+            }
+            return true;
+        }
 
         function getAgeFromBirthDate() {
 

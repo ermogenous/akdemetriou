@@ -77,7 +77,6 @@ function getQuotationHtml($qId, $pdf = false)
                     <td width="50%">
                             <strong>Name: </strong> ' . $data["client_name"] . ' ' . $data["client_sur_name"] . ' ' .
         $db->convert_date_format($data["client_birthdate"], 'yyyy-mm-dd', 'dd/mm/yyyy') . '<br>
-                            <strong>ID: </strong>' . $data["client_id"] . '<br>
                             <strong>Mobile: </strong>' . $data["client_mobile"] . '<br>
                             <strong>Email: </strong>' . $data["client_email"] . '<br>';
 
@@ -86,6 +85,7 @@ function getQuotationHtml($qId, $pdf = false)
     }
     $html .= '
                             <span><strong>Issue Date: </strong>' . date('d/m/Y G:i:s') . '</span>
+                            <br><strong>Effective Date: </strong>'.$db->convert_date_format($data["effective_date"],'yyyy-mm-dd','dd/mm/yyyy') . '
                      </td>
                     <td align="right"><img src="../images/DCare_Logo.jpg" width="300"></td>
                 </tr>

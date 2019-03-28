@@ -49,10 +49,10 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
     $main["remote_folder_total"] = 1;
 
 
-    $main["db_username"] = "akdemetr_program";
-    $main["db_password"] = "g{bMu6U\,Z2vSPx%";
-    $main["db_host"] = "10.169.0.169";
-    $main["db_database"] = "akdemetr_program";
+    $main["db_username"] = "seukxkmzej";
+    $main["db_password"] = "Xn5cnHAeAu";
+    $main["db_host"] = "209.97.134.64";
+    $main["db_database"] = "seukxkmzej";
 
     $main["admin_email"] = 'ermogenousm@gmail.com';
     //no-reply email
@@ -82,7 +82,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
 }
 
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
-    ini_set('error_reporting','E_ALL');
+    //ini_set('error_reporting','E_ALL & ~E_NOTICE & ~E_WARNING');
 }
 else {
     //header("Location: ".$main["site_host"]."/under_construction.php");
@@ -93,5 +93,5 @@ else {
 ini_set('display_errors', '1');
 ini_set('html_errors', '1');
 if ($temp_var["show_all_errors"] != 1) {
-    //ini_set('error_reporting','E_ALL & ~E_NOTICE & ~E_WARNING');
+    ini_set('error_reporting','E_ALL & ~E_NOTICE & ~E_WARNING');
 }

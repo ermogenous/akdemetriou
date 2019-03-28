@@ -760,6 +760,7 @@ class Main
     public function include_js_file($file_location)
     {
         $this->admin_more_head .= "<script language=\"JavaScript\" type=\"text/javascript\" src=\"" . $file_location . "\"></script>\n";
+
     }
 
     public function include_css_file($file_location)
@@ -769,9 +770,10 @@ class Main
 
     public function enable_jquery()
     {
-
-        $this->include_js_file($this->settings["site_url"] . "/scripts/jquery/jquery.js");
-        $this->enabled_jquery = 'yes';
+        if ($this->enabled_jquery != 'yes') {
+            $this->include_js_file($this->settings["site_url"] . "/scripts/bootstrap-4/js/jquery-3.3.1.min.js");
+            $this->enabled_jquery = 'yes';
+        }
     }
 
     public function enable_jquery_ui($css = '')
@@ -782,13 +784,11 @@ class Main
             $this->enable_jquery();
         }
 
-        $this->include_js_file($this->settings["site_url"] . "/scripts/jquery/jquery-ui.js");
-        $this->enabled_jquery_ui = 'yes';
+        if ($this->enabled_jquery_ui != 'yes') {
+            $this->include_js_file($this->settings["site_url"] . "/scripts/jquery-ui-1.12.1/jquery-ui.js");
+            $this->enabled_jquery_ui = 'yes';
 
-        if ($css == '') {
-            $this->include_css_file($this->settings["site_url"] . "/scripts/jquery/smoothness/jquery-ui.css");
-        } else {
-            $this->include_css_file($this->settings["site_url"] . "/scripts/jquery/" . $css . "/jquery-ui.css");
+            $this->include_css_file($this->settings["site_url"] . "/scripts/jquery-ui-1.12.1/jquery-ui.theme.css");
         }
 
     }
@@ -1294,6 +1294,33 @@ class Main
         $to = strtotime($date2);
         $datediff = $to - $from;
         return floor($datediff / (60 * 60 * 24));
+
+    }
+
+    //returns 1 if date1 > date2, returns 0 if date1 < date2, returns 0 if date1 = date2
+    function compare2dates($date1, $date2, $format = 'dd/mm/yyyy')
+    {
+
+        if ($format == 'yyyy-mm-dd') {
+            $date1 = $this->convert_date_format($date1, 'yyyy-mm-dd', 'dd/mm/yyyy');
+            $date2 = $this->convert_date_format($date2, 'yyyy-mm-dd', 'dd/mm/yyyy');
+        }
+
+        $date1Parts = explode('/', $date1);
+        $date2Parts = explode('/', $date2);
+
+        $dt1 = ($date1Parts[2] * 10000) + ($date1Parts[1] * 100) + $date1Parts[0];
+        $dt2 = ($date2Parts[2] * 10000) + ($date2Parts[1] * 100) + $date2Parts[0];
+
+        $return = 2;
+        if ($dt1 > $dt2) {
+            $return = 1;
+        } else if ($dt1 < $dt2) {
+            $return = -1;
+        } else if ($dt1 == $dt2) {
+            $return = 0;
+        }
+        return $return;
 
     }
 

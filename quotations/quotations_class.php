@@ -12,8 +12,11 @@ class quotations
     public $frequencyOfPayment;
     private $under10Free = true;
     private $foundSpouse = false;
+    private $pricingTable = 'pricing';
+    private $pricingVersion = '2-2018';
 
     public $premiumData;
+
 
     function __construct($quotationsID)
     {
@@ -25,8 +28,7 @@ class quotations
             JOIN quotations ON quotations.quotations_id = quotation_members.quotations_id
             WHERE quotation_members.quotations_id = " . $quotationsID
                 . " AND quotation_members.order < 900";
-        }
-        else {
+        } else {
             $this->quotationData = $db->query_fetch("SELECT * FROM quotations WHERE quotations_id = " . $quotationsID . " AND user_id = " . $db->user_data['usr_users_ID']);
             $this->membersSql = "SELECT * FROM quotation_members
             JOIN quotations ON quotations.quotations_id = quotation_members.quotations_id
@@ -38,17 +40,22 @@ class quotations
         $this->excess = $this->quotationData["excess"];
         $this->frequencyOfPayment = $this->quotationData["frequency_of_payment"];
 
+        //use the proper pricing table
+        if ($db->compare2dates($this->quotationData['effective_date'], '2019-03-31', 'yyyy-mm-dd') == 1) {
+            $this->pricingTable = 'pricing_4_2019';
+            $this->pricingVersion = '4-2019';
+        }
+
     }
 
-    public function verifyAccess($superClass) {
-        if ($superClass->user_data['usr_user_rights'] == 0){
+    public function verifyAccess($superClass)
+    {
+        if ($superClass->user_data['usr_user_rights'] == 0) {
             return true;
-        }
-        else {
+        } else {
             if ($this->quotationData['quotations_id'] > 0) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -58,13 +65,17 @@ class quotations
     {
         global $db;
         //prepare the data from the client first
-        if ($this->quotationData["coverage_type"] == 'CPME' || $this->quotationData["coverage_type"] == 'OMHD'){
+        if ($this->quotationData["coverage_type"] == 'CPME' || $this->quotationData["coverage_type"] == 'OMHD') {
             $coverageType = 'FULL';
-        }
-        else {
+        } else {
             $coverageType = $this->quotationData["coverage_type"];
         }
-        $sql = "SELECT * FROM pricing WHERE 
+
+        //find the proper pricing table
+        //if ($this->quotationData[''])
+
+
+        $sql = "SELECT * FROM " . $this->pricingTable . " WHERE 
                   coverage_type = '" . $coverageType . "' AND  
                   package = '" . $this->quotationData["package"] . "' AND 
                   area_of_cover = '" . $this->quotationData["area_of_cover"] . "' AND 
@@ -77,14 +88,12 @@ class quotations
         //check if age is more than 69
         if ($data['age'] > 69) {
             $memberAge = 69;
-        }
-        else {
+        } else {
             $memberAge = $data['age'];
         }
-        if ($data['client_age'] > 69){
+        if ($data['client_age'] > 69) {
             $clientAge = 69;
-        }
-        else {
+        } else {
             $clientAge = $data['client_age'];
         }
         if ($data["quotation_members_ID"] != null) {
@@ -109,7 +118,7 @@ class quotations
             $multiplier = 1.15;
         }
         //if loading then add it to the multiplier
-        if ($this->quotationData['coverage_type'] == 'CPME' || $this->quotationData['coverage_type'] == 'OMHD'){
+        if ($this->quotationData['coverage_type'] == 'CPME' || $this->quotationData['coverage_type'] == 'OMHD') {
             $multiplier += ($this->quotationData['loading'] / 100);
         }
         $return["value"] = $return["value"] * $multiplier;
@@ -119,27 +128,27 @@ class quotations
         //check if under 10 which is free and if spouse exists
         $return["free"] = 0;
         //echo "->".$age." ".$this->under10Free." Spouse:".$this->foundSpouse."<br><br>";
-        if ($age <= 10
-            && $this->under10Free == true
-            && $this->foundSpouse == true
-            && $data["type"] == 'DEPENDENT')
-        {
 
-            //echo "Here";
-            if ($this->quotationData['under_10_discount'] == ''
-                || $this->quotationData['under_10_discount'] == 'free')
-            {
-                $return["value"] = 0;
-                $return["free"] = 1;
-            }
-            else if ($this->quotationData['under_10_discount'] == 'chargeDiscount'){
-                $return["value"] = round(($return["value"] * 0.5),2);
-            }
-            else if ($this->quotationData['under_10_discount'] == 'charge'){
-                //do nothing. charge the member
-            }
+        //under 10 discounts after 1/4/2019 is removed
+        if ($this->pricingVersion == '2-2018') {
+            if ($age <= 10
+                && $this->under10Free == true
+                && $this->foundSpouse == true
+                && $data["type"] == 'DEPENDENT') {
+
+                //echo "Here";
+                if ($this->quotationData['under_10_discount'] == ''
+                    || $this->quotationData['under_10_discount'] == 'free') {
+                    $return["value"] = 0;
+                    $return["free"] = 1;
+                } else if ($this->quotationData['under_10_discount'] == 'chargeDiscount') {
+                    $return["value"] = round(($return["value"] * 0.5), 2);
+                } else if ($this->quotationData['under_10_discount'] == 'charge') {
+                    //do nothing. charge the member
+                }
 
 
+            }
         }
         //check if the member is a spouse
         if ($data["type"] == 'SPOUSE') {
@@ -192,13 +201,18 @@ class quotations
         }
         $this->premiumData['net_premium'] = $total_premium;
         $this->premiumData["country"] = $this->quotationData["country"];
+        //get the stamps
         //check the country
         if ($this->quotationData["country"] == "CYP") {
             $this->premiumData["stamps"] = 2;
         } else if ($this->quotationData["country"] == "GRE") {
             $this->premiumData["stamps"] = 0;
         }
-        $this->premiumData["fees"] = 60;
+        if ($this->pricingVersion == '4-2019') {
+            $this->premiumData["fees"] = 30;
+        } else {
+            $this->premiumData["fees"] = 60;
+        }
 
         //make the total gross premium
         $this->premiumData["gross_premium"] = $this->premiumData["net_premium"]
@@ -214,16 +228,18 @@ class quotations
             $this->premiumData["first_payment"] = $this->premiumData["per_payment"] + $this->premiumData["stamps"];
         } else if ($this->quotationData["frequency_of_payment"] == "SEMI - ANNUAL") {
             $this->premiumData["number_of_payments"] = 2;
-            $this->premiumData["per_payment"] = round($this->premiumData["gross_premium"] / 2, 2);
-            $this->premiumData["first_payment"] = $this->premiumData["per_payment"] + $this->premiumData["stamps"];
+                $this->premiumData["per_payment"] = round($this->premiumData["gross_premium"] / 2, 2);
+                $this->premiumData["first_payment"] = $this->premiumData["per_payment"] + $this->premiumData["stamps"];
+
         } else if ($this->quotationData["frequency_of_payment"] == "QUARTERLY") {
             $this->premiumData["number_of_payments"] = 4;
-            $this->premiumData["per_payment"] = round($this->premiumData["gross_premium"] / 4, 2);
-            $this->premiumData["first_payment"] = $this->premiumData["per_payment"] + $this->premiumData["stamps"];
+                $this->premiumData["per_payment"] = round($this->premiumData["gross_premium"] / 4, 2);
+                $this->premiumData["first_payment"] = $this->premiumData["per_payment"] + $this->premiumData["stamps"];
+
         } else if ($this->quotationData["frequency_of_payment"] == "MONTHLY") {
             $this->premiumData["number_of_payments"] = 12;
-            $this->premiumData["per_payment"] = round($this->premiumData["gross_premium"] / 12, 2);
-            $this->premiumData["first_payment"] = $this->premiumData["per_payment"] + $this->premiumData["stamps"];
+                $this->premiumData["per_payment"] = round($this->premiumData["gross_premium"] / 12, 2);
+                $this->premiumData["first_payment"] = $this->premiumData["per_payment"] + $this->premiumData["stamps"];
         }
 
         //print_r($this->clientPremium);
@@ -258,11 +274,13 @@ class quotations
         $this->under10Free = false;
     }
 
-    public function getQuotationUserID() {
+    public function getQuotationUserID()
+    {
         return $this->quotationData['user_id'];
     }
 
-    public function getQuotationData() {
+    public function getQuotationData()
+    {
         return $this->quotationData;
     }
 
