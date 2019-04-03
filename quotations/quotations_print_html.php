@@ -64,6 +64,14 @@ function getQuotationHtml($qId, $pdf = false)
         $middleSize = 100;
     }
 
+    $country = '';
+    if ($data['country'] == 'CYP'){
+        $country = 'Cyprus';
+    }
+    else if($data['country'] == 'GRE'){
+        $country = 'Greece';
+    }
+
     $html = '
 <table width="100%">
     <tr>
@@ -78,7 +86,8 @@ function getQuotationHtml($qId, $pdf = false)
                             <strong>Name: </strong> ' . $data["client_name"] . ' ' . $data["client_sur_name"] . ' ' .
         $db->convert_date_format($data["client_birthdate"], 'yyyy-mm-dd', 'dd/mm/yyyy') . '<br>
                             <strong>Mobile: </strong>' . $data["client_mobile"] . '<br>
-                            <strong>Email: </strong>' . $data["client_email"] . '<br>';
+                            <strong>Email: </strong>' . $data["client_email"] . '<br>
+                            <strong>Country: </strong>'.$country."<br>";
 
     if ($data['individual_group'] == 'I') {
         $html .= '<strong>Agent: </strong>' . $db->user_data["usr_name_en"] . '<br>';
@@ -258,10 +267,14 @@ function getQuotationHtml($qId, $pdf = false)
                     <td colspan="2"><br><br></td>
                 </tr>
                 <tr>
-                    <td align="center" style="font-size: 12px;" colspan="2">
-                    *For enrolments of a husband and wife - All children under the age of 10 will be premium free
-                for the first year, with a payment of 50% for year 2 and reverting to normal premiums in year 3.
-                <br>Premium shown are indication only.
+                    <td align="center" style="font-size: 12px;" colspan="2">';
+        if ($data['country'] == 'CYP' && $prem->getPricingVersion() == '2-2018'){
+            $html .= '*For enrolments of a husband and wife - All children under the age of 10 will be premium free 
+                    for the first year, with a payment of 50% for year 2 and reverting to normal premiums in year 3.
+                <br>';
+        }
+
+        $html .= 'Premium shown are indication only.
                 The premium may change following submission on a fully completed application form.
                 ';
         if ($data["country"] == 'CYP') {
@@ -544,11 +557,13 @@ function getQuotationHtml($qId, $pdf = false)
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
+                        <div style="font-size: 11px; font-weight: bold; color: #000000">
                         Underwritten by Lloyd’s Insurance Company S.A.
+                        </div>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" align="center" style="font-size: 11px; color:#CCCCCC;">
+                    <td colspan="2" align="center" style="font-size: 11px; color:#666666;">
                         T +357 24822622 | F +357 24822623 | E info@akdemetriou.com | W www.akdemetriou.com
                         <br>
                         A.K. Demetriou Insurance Agents, Sub-agents & Consultants Ltd<br>

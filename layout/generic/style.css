@@ -27,6 +27,12 @@
     font-size: 12px;
 }
 
+.main_text_smaller_bold {
+    font-size: 11px;
+    color: #CCCCCC;
+    font-weight: bold;
+}
+
 .home_butterfly_bg{
     background-image: url("images/butterfly.png");
     background-repeat: no-repeat;

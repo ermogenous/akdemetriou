@@ -646,7 +646,7 @@ $db->show_header();
                                 });
                             </script>
                             <div class="invalid-feedback">
-                                Please provide a valid effective date.
+                                Please provide a valid effective date.<br>Date cannot be before today.
                             </div>
                         </div>
                     </div>
@@ -1180,6 +1180,25 @@ $db->show_header();
                             event.stopPropagation();
                             noErrorFound = false;
                         }
+
+                        //compare effective date with today
+                        //cannot have past dates
+                        let todayNum = <?php echo (date('Y')*10000) + (date('m') * 100) + (date('d'));?>;
+                        let effectiveDateSplit = effectiveDate.split('/');
+                        let effectiveDateNum = (effectiveDateSplit[2] * 10000) + (effectiveDateSplit[1] * 100) + (effectiveDateSplit[0] * 1);
+
+                        if (effectiveDateNum < todayNum){
+                            $('#fld_effective_date').addClass('is-invalid');
+                            $('#fld_effective_date').removeClass('is-valid');
+                            event.preventDefault();
+                            event.stopPropagation();
+                            noErrorFound = false;
+                        }
+                        else {
+                            $('#fld_effective_date').addClass('is-valid');
+                            $('#fld_effective_date').removeClass('is-invalid');
+                        }
+
 
 
                         //>>MIC

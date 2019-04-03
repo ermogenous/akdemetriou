@@ -48,6 +48,10 @@ class quotations
 
     }
 
+    public function getPricingVersion(){
+        return $this->pricingVersion;
+    }
+
     public function verifyAccess($superClass)
     {
         if ($superClass->user_data['usr_user_rights'] == 0) {
