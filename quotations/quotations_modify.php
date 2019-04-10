@@ -606,7 +606,7 @@ $db->show_header();
 
                     <?php
                     //under 10 discounts is removed after 1/4/2019
-                    if (1 == 2) {
+                    if ($db->user_data['usr_user_rights'] <= 2) {
                         ?>
                         <div class="form-group row">
                             <label for="fld_under_10_discount" class="col-sm-4 col-form-label">Under 10
