@@ -137,7 +137,7 @@ function getQuotationHtml($qId, $pdf = false)
             while ($member = $db->fetch_assoc($membersData)) {
                 $totalMembers++;
                 if ($pdf) {
-                    $html .= '<br>';
+                    //$html .= '<br>';
                 }
                 $html .= ",&nbsp&nbsp" . $member["name"] . " " . $member["surname"] . " (" . $member["age"];
                 //echo "=>".$prem->premiumData["members"]["free"]." -> ";
